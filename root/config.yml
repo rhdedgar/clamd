@@ -9,7 +9,7 @@
     - name: cron_pull_signatures
       minute: "15"
       hour: "*/12"
-      job: "/usr/local/bin/pull_clam_signatures &>/dev/null"
+      job: "/usr/bin/pull_clam_signatures &>/dev/null"
 
   tasks:
   - name: "Ensure the clamd pid and socket directory has been created"

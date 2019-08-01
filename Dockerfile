@@ -12,11 +12,7 @@ ADD root/ /root/
 # Install clam server utilities and signature updater
 RUN yum install -y clamav-server \
 		   clamav-scanner \
-		   clamav-unofficial-sigs \
-		   openshift-tools-scripts-clam-update \
-                   python2-pip \
-		   python2-boto3 \
-                   python2-botocore && \
+		   clamav-unofficial-sigs && \
     yum clean all
 
 ADD scripts/ /usr/local/bin/
