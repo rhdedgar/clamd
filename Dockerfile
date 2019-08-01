@@ -1,6 +1,6 @@
 # /usr/local/bin/start.sh will start the service
 
-FROM golang:latest 
+FROM openshifttools/oso-centos7-ops-base:latest 
 
 # Pause indefinitely if asked to do so.
 ARG OO_PAUSE_ON_BUILD
