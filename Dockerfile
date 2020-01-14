@@ -1,6 +1,6 @@
 # /usr/local/bin/start.sh will start the service
 
-FROM openshifttools/oso-centos7-ops-base:latest 
+FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
 
 # Pause indefinitely if asked to do so.
 ARG OO_PAUSE_ON_BUILD
@@ -17,13 +17,8 @@ RUN yum install -y clamav-server \
 
 ADD scripts/ /usr/local/bin/
 
-ADD clamd/ /etc/clamd.d/
-
-# Make mount point for host filesystem and compile scanning utilities
-RUN mkdir -p /host/var/run/clamd.scan
-
-# run as root user
-USER 0
+# Delete the default clam update cron jobs as we will be using custom tooling instead
+RUN rm -f /etc/cron.d/clamav-update /etc/cron.d/clamav-unofficial-sigs
 
 # Start processes
 CMD /usr/local/bin/start.sh
