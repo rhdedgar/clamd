@@ -6,6 +6,8 @@ FROM registry.access.redhat.com/ubi8/ubi:latest
 ARG OO_PAUSE_ON_BUILD
 RUN test "$OO_PAUSE_ON_BUILD" = "true" && while sleep 10; do true; done || :
 
+RUN yum install -y epel-release
+
 # Install clam server utilities and signature updater
 RUN yum install -y clamav-server \
 		   clamav-scanner \
