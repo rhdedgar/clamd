@@ -1,16 +1,16 @@
 # /usr/local/bin/start.sh will start the service
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
+FROM registry.access.redhat.com/ubi8/ubi:latest
 
 # Pause indefinitely if asked to do so.
 ARG OO_PAUSE_ON_BUILD
 RUN test "$OO_PAUSE_ON_BUILD" = "true" && while sleep 10; do true; done || :
 
 # Install clam server utilities and signature updater
-RUN microdnf install -y clamav-server \
+RUN yum install -y clamav-server \
 		   clamav-scanner \
 		   clamav-unofficial-sigs && \
-    microdnf clean all
+    yum clean all
 
 ADD scripts/ /usr/local/bin/
 
