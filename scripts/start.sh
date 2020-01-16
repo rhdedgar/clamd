@@ -12,23 +12,9 @@ if [ "$OO_PAUSE_ON_START" = "true" ] ; then
   done
 fi
 
-echo "Running config playbook"
-ansible-playbook /root/config.yml
-
 echo This container hosts the following applications:
 echo
 echo '/usr/sbin/clamd'
 echo
-echo '/usr/bin/pull_clam_signatures'
-echo
-echo '/usr/bin/check_clam_server'
-echo
 echo 'start clamd in the foreground so we can easily check status with oc logs'
-/usr/sbin/clamd -c /etc/clamd.d/scan.conf --foreground=yes &
-#echo 'start prometheus monitoring'
-#/usr/bin/check_clam_server &
-echo
-echo '---------------'
-echo 'Starting crond'
-echo '---------------'
-exec /usr/sbin/crond -n -m off
+/usr/sbin/clamd -c /etc/clamd.d/scan.conf --foreground=yes
