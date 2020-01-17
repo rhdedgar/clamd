@@ -14,6 +14,8 @@ RUN yum install -y clamav-server \
 
 ADD scripts/ /usr/local/bin/
 
+ADD clamd/ /etc/clamd.d/
+
 # Delete the default clam update cron jobs as we will be using custom tooling instead
 RUN rm -f /etc/cron.d/clamav-update /etc/cron.d/clamav-unofficial-sigs
 
