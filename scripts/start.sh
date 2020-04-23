@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "clamd container v0.0.2"
+echo "clamd container v0.0.3"
 
 # This is useful so we can debug containers running inside of OpenShift that are
 # failing to start properly.
