@@ -32,6 +32,7 @@ RUN chown -R clamupdate:clamupdate /etc/clamav-unofficial-sigs && \
     chown -R clamupdate:clamupdate /usr/local/sbin /var/log/clamav-unofficial-sigs /var/lib/clamav-unofficial-sigs && \
     chown -R clamupdate:clamupdate /var/lib/clamav/ && \
     chown clamupdate:clamupdate /usr/sbin/clamav-unofficial-sigs.sh && \
+    chown clamupdate:clamupdate /etc/freshclam.conf && \
     chown clamupdate:clamupdate /usr/bin/freshclam
 
 # Change shell to the clamupdate user
