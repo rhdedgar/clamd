@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "clamd container v0.0.6"
+echo "clamd container v0.0.9"
 
 # This is useful so we can debug containers running inside of OpenShift that are
 # failing to start properly.
@@ -22,7 +22,7 @@ if [ "$UPDATE_ONLY" = "true" ] ; then
   echo '----------------'
     /usr/local/bin/ops-run-in-loop 43200 /usr/bin/freshclam 2>&1 &
     sleep 300
-    /usr/local/bin/ops-run-in-loop 43200 /usr/bin/clamav-unofficial-sigs.sh
+    /usr/local/bin/ops-run-in-loop 43200 /usr/sbin/clamav-unofficial-sigs.sh
 fi
 
 echo This container hosts the following applications:
