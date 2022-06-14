@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "clamd container v0.0.10"
+echo "clamd container v0.0.11"
 
 # This is useful so we can debug containers running inside of OpenShift that are
 # failing to start properly.
@@ -32,6 +32,7 @@ echo
 echo 'Start clamd in the foreground so we can easily check status with oc logs'
 while true; do
   /usr/sbin/clamd -c /etc/clamd.d/scan.conf --foreground=yes
-  echo 'clamd exited with code $?'
+  echo "clamd exited with code $?."
+  echo "sleeping for 10 seconds before restarting clamd."
   sleep 10
 done
