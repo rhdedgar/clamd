@@ -15,7 +15,10 @@ RUN microdnf install -y wget && \
 		   clamav-update \
 		   clamd \
 		   clamav-unofficial-sigs \
-                   util-linux-user && \
+                   util-linux-user \
+                   tar \
+                   ncurses \
+                   findutils && \
     microdnf clean all
 
 ADD scripts/ /usr/local/bin/

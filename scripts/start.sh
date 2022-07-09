@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-echo "clamd container v0.0.12"
+echo "clamd container v0.0.17"
 
 # This is useful so we can debug containers running inside of OpenShift that are
 # failing to start properly.
@@ -12,6 +12,17 @@ if [ "$OO_PAUSE_ON_START" = "true" ] ; then
   while true; do
     sleep 10    
   done
+fi
+
+if [ "$INIT_CONTAINER" = "true" ] ; then
+  echo
+  echo "The INIT_CONTAINER variable has been set. This container will update the shared volume with new clam DBs and then exit."
+  echo
+  echo 'Updating ClamAV official and unofficial signatures once, then exiting.'
+  echo '----------------'
+  /usr/bin/freshclam
+  /usr/sbin/clamav-unofficial-sigs.sh
+  exit 0
 fi
 
 if [ "$UPDATE_ONLY" = "true" ] ; then
@@ -33,7 +44,7 @@ echo This container hosts the following applications:
 echo
 echo '/usr/sbin/clamd'
 echo
-echo 'Start clamd in the foreground so we can easily check status with oc logs'
+echo 'Start clamd as a long running process in the foreground, so we can easily check status with oc logs'
 while true; do
   /usr/sbin/clamd -c /etc/clamd.d/scan.conf --foreground=yes
   echo "clamd exited with code $?."
